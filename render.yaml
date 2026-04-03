@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: expense-calendar
+    runtime: docker
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: expense-calendar-db
+          property: connectionString
+      - key: ADMIN_USERNAMES
+        value: admin
+
+databases:
+  - name: expense-calendar-db
+    plan: free
+    databaseName: expense_calendar
+    user: expense_user
